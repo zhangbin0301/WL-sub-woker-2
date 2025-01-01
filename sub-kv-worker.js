@@ -330,11 +330,19 @@ async function handleUpdateSub2(request) {
     await SUB2_STORE.delete(key.name);
   }
 
-  // 保存新的SUB2数据（应用关键词过滤）
-  const filteredUrls = urls.filter(url => !shouldExcludeUrl(url));
-  for (let i = 0; i < filteredUrls.length; i++) {
-    await SUB2_STORE.put(`sub2_url_${i}`, filteredUrls[i]);
+  // 预处理URL并应用过滤
+  const processedUrls = urls
+    .map(url => preProcessUrl(url))  // 使用预处理函数处理URL
+    .filter(url => !shouldExcludeUrl(url));  // 过滤排除的URL
+
+  // 保存处理后的SUB2数据
+  for (let i = 0; i < processedUrls.length; i++) {
+    await SUB2_STORE.put(`sub2_url_${i}`, processedUrls[i]);
   }
+
+  return new Response('OK', { status: 200 });
+}
+
 
   return new Response('OK', { status: 200 });
 }
