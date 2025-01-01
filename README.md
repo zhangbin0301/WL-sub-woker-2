@@ -8,4 +8,6 @@
 
 3.把节点上传地址填入玩具脚本SUB_URl变量里面，可以自动生成节点订阅
 
-后台管理地址:  /sub
+玩具脚本地址:https://github.com/dsadsadsss/java-wanju.git
+
+## 后台管理地址:  /sub
