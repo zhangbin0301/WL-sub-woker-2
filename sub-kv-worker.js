@@ -1,4 +1,4 @@
-// 使用 KV 存储替代内存存储
+// 使用 KV 存储
 // 你需要绑定变量名为URL_STORE和SUB2_STORE的2个KV空间
 // 基础配置参数
 const CONFIG = {
@@ -11,7 +11,7 @@ const CONFIG = {
 };
 
 // 排除包含关键词的节点,分号隔开.
-const excludeKeywords = 'GB-eugamehost.com;TW-freeserver.tw';
+const excludeKeywords = 'GB-eugame.com;TW-free.tw';
 
 // 协议配置，默认即可
 const PROTOCOL = {
