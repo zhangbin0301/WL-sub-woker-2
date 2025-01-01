@@ -236,7 +236,8 @@ const html = `<!DOCTYPE html>
 // URL预处理函数
 function preProcessUrl(url) {
   let isSpecialFormat = false;
-  if (url.startsWith('{BASS}://') || url.startsWith(`${PROTOCOL.pm}ess://`)) {
+  if ((url.startsWith('{BASS}://') || url.startsWith(`${PROTOCOL.pm}ess://`)) && 
+      url.split('://')[1].charAt(0) !== '{') {
     isSpecialFormat = true;
   }
 
