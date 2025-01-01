@@ -2,9 +2,9 @@
 // 你需要绑定变量名为URL_STORE和SUB2_STORE的2个KV空间
 // 基础配置参数
 const CONFIG = {
-  UUID: '123456',           // 节点上传密钥
-  TOKEN: '666666',          // 订阅地址密钥
-  PASSWORD: 'pswd123456',     // 后台页面登陆密码，路径/sub
+  UUID: '1111111',           // 节点上传密钥
+  TOKEN: '111111',          // 订阅地址密钥
+  PASSWORD: '123',     // 后台页面登陆密码，路径/sub
   DEFAULT_DOMAIN: 'xx.dev', //  默认即可，无需设置
   EXPIRATION_TIME: 600,     // 链接有效期(秒)
   MAX_LOGIN_ATTEMPTS: 3     // 最大登录尝试次数
