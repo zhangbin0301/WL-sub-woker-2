@@ -167,7 +167,7 @@ const html = `<!DOCTYPE html>
                 document.getElementById('uploadUrl').textContent = 
                     \`\${domain}/upload-\${UUID}\`;
                 document.getElementById('downloadUrl').textContent = 
-                    \`\${domain}/token=\${TOKEN}?cf_ip={ip}&cf_port={port}\`;
+                    \`\${domain}/token=\${TOKEN}?cf_ip=ip.sb&cf_port=443\`;
                 loadSub2();
             } else {
                 loginAttempts++;
