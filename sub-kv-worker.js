@@ -2,7 +2,7 @@
 // 你需要绑定变量名为URL_STORE和SUB2_STORE的2个KV空间
 // 基础配置参数
 const CONFIG = {
-  UUID: '1Gzousfi3cKf6bp1Ap',           // 节点上传密钥
+  UUID: 'ea4909ef-7ca6-4b46-bf2e-6c07896ef338',           // 节点上传密钥
   TOKEN: 'lgbts',          // 订阅地址密钥
   PASSWORD: '123123',     // 后台页面登陆密码，路径/sub
   DEFAULT_DOMAIN: 'xx.dev', //  默认即可，无需设置
