@@ -200,6 +200,7 @@ const html = `<!DOCTYPE html>
             <div id="upload" class="tab-content">
                 <h3>当前节点列表：</h3>
                 <div id="currentList" class="current-list"></div>
+                  <button onclick="deleteAllUrls()" class="load-btn">删除全部</button>
                 <button onclick="loadUrls()" class="load-btn">刷新列表</button>
             </div>
              <div id="sub2" class="tab-content">
@@ -210,6 +211,7 @@ const html = `<!DOCTYPE html>
 
                 <h3>当前自定义节点列表：</h3>
                 <div id="currentSub2List" class="current-sub2-list"></div>
+                  <button onclick="deleteAllSub2Urls()" class="load-btn">删除全部</button>
                 <button onclick="loadSub2()" class="load-btn">刷新列表</button>
             </div>
             <div id="keywords" class="tab-content">
@@ -219,6 +221,7 @@ const html = `<!DOCTYPE html>
                  <div id="keywordSuccessMessage" class="success-message">更新成功！</div>
                  <h3>当前关键词列表：</h3>
                 <div id="currentKeywordList" class="current-keyword-list"></div>
+                  <button onclick="deleteAllKeywords()" class="load-btn">删除全部</button>
                 <button onclick="loadKeywords()" class="load-btn">刷新列表</button>
             </div>
         </div>
@@ -324,6 +327,22 @@ const html = `<!DOCTYPE html>
                 alert('删除失败，请重试');
             }
         }
+         async function deleteAllUrls() {
+              if (confirm('确定删除全部节点吗？')) {
+                  const response = await fetch(\`\${getDomain()}/delete-all-urls-\${UUID}\`, {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                      }
+                  });
+
+                  if (response.ok) {
+                      loadUrls(); // 刷新列表
+                  } else {
+                      alert('删除失败，请重试');
+                  }
+             }
+         }
           // 自定义节点管理
        async function updateSub2() {
             const content = document.getElementById('sub2Input').value;
@@ -393,7 +412,22 @@ const html = `<!DOCTYPE html>
                 alert('删除失败，请重试');
             }
         }
+          async function deleteAllSub2Urls() {
+               if (confirm('确定删除全部自定义节点吗？')) {
+                const response = await fetch(\`\${getDomain()}/delete-all-sub2-\${UUID}\`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
 
+                if (response.ok) {
+                    loadSub2();
+                } else {
+                    alert('删除失败，请重试');
+                }
+            }
+        }
           // 关键词过滤管理
         async function updateKeywords() {
             const content = document.getElementById('keywordInput').value;
@@ -458,6 +492,22 @@ const html = `<!DOCTYPE html>
                 loadKeywords(); // Refresh the list
             } else {
                 alert('删除失败，请重试');
+            }
+        }
+         async function deleteAllKeywords() {
+               if (confirm('确定删除全部关键词吗？')) {
+                const response = await fetch(\`\${getDomain()}/delete-all-keywords-\${UUID}\`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    loadKeywords();
+                } else {
+                    alert('删除失败，请重试');
+                }
             }
         }
 
@@ -574,15 +624,39 @@ async function handleRequest(request) {
         return handleGetUrls();
     }else if (path === `/delete-url-${CONFIG.UUID}` && request.method === 'POST') {
         return handleDeleteUrl(request);
-    } else if (path === `/update-keywords-${CONFIG.UUID}` && request.method === 'POST') {
+    }else if (path === `/delete-all-urls-${CONFIG.UUID}` && request.method === 'POST') {
+      return handleDeleteAllUrls(request);
+    }else if (path === `/update-keywords-${CONFIG.UUID}` && request.method === 'POST') {
         return handleUpdateKeywordsRequest(request);
     } else if (path === `/get-keywords-${CONFIG.UUID}`) {
         return handleGetKeywordsRequest();
     }else if (path === `/delete-keyword-${CONFIG.UUID}` && request.method === 'POST') {
         return handleDeleteKeyword(request);
+    } else if (path === `/delete-all-keywords-${CONFIG.UUID}` && request.method === 'POST') {
+        return handleDeleteAllKeywords(request);
+    }else if (path === `/delete-all-sub2-${CONFIG.UUID}` && request.method === 'POST') {
+         return handleDeleteAllSub2(request);
     }else {
     return new Response('Not Found', { status: 404 });
   }
+}
+async function handleDeleteAllKeywords() {
+    await updateExcludeKeywords([]);
+    return new Response('OK', { status: 200 });
+}
+async function handleDeleteAllSub2() {
+  const data = await SUB2_STORE.list();
+  for (const key of data.keys) {
+    await SUB2_STORE.delete(key.name);
+  }
+  return new Response('OK', { status: 200 });
+}
+async function handleDeleteAllUrls(request) {
+    const data = await URL_STORE.list();
+     for (const key of data.keys) {
+         await URL_STORE.delete(key.name)
+     }
+    return new Response('OK', { status: 200 });
 }
 // 处理删除关键词
 async function handleDeleteKeyword(request) {
