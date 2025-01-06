@@ -870,8 +870,7 @@ async function handleToken(request) {
     if ((url.startsWith('{BASS}://') || url.startsWith(`${PROTOCOL.pm}ess://`)) && 
       url.split('://')[1].charAt(0) == '{') {
        let content = url.split('://')[1];
-        const encoder = new TextEncoder();
-        const encodedContent = btoa(String.fromCharCode(...encoder.encode(content)));
+       let encodedContent = btoa(content);
       return `${PROTOCOL.pm}ess://` + encodedContent;
     }
     return url;
