@@ -601,7 +601,7 @@ async function handleRequest(request) {
   }
   
   // 管理页面路径改为/sub
-  if (path === '/sub') {
+  if (path === `/sub-${CONFIG.UUID}`) {
     return new Response(html, {
       headers: {
         'content-type': 'text/html;charset=UTF-8',
