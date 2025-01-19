@@ -1,17 +1,10 @@
 # woker节点订阅管理系统
-
 使用说明:
-
 1.你需要绑定变量名为URL_STORE和SUB2_STORE的2个KV空间
-
-   a:左侧栏找 存储和数据--KV
-   
-   b:右侧找到 创建  分别创建URL_STORE和SUB2_STORE
-   
-   c:回到Workers 和 Pages 对应项目里。设置--绑定
-   
+   a:左侧栏找 存储和数据--KV   
+   b:右侧找到 创建  分别创建URL_STORE和SUB2_STORE   
+   c:回到Workers 和 Pages 对应项目里。设置--绑定   
    d:找到添加  分别添加KV命名空间---变量名称RL_STORE和SUB2_STORE 命名空间URL_STORE和SUB2_STORE
-
    
 2.原始节点优选ip要设置为ip.sb,端口443，才能实现自动更换
 
@@ -21,6 +14,6 @@
 
 玩具脚本地址:https://github.com/dsadsadsss/java-wanju.git
 
-
-
 ## 后台管理地址:  /sub-uuid   uuid为变量
+
+#kv-worker18是更新后加密代码，可自动删除无效节点（暂未验证）
