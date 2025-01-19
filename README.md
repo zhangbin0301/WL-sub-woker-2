@@ -1,4 +1,4 @@
-# woker节点订阅管理系统
+# woker节点订阅管理系统 sub-kv-worker.js
 使用说明:
 1.你需要绑定变量名为URL_STORE和SUB2_STORE的2个KV空间
    a:左侧栏找 存储和数据--KV   
@@ -16,4 +16,4 @@
 
 ## 后台管理地址:  /sub-uuid   uuid为变量
 
-#kv-worker18是更新后加密代码，可自动删除无效节点（暂未验证）
+#kv-worker18.js是更新后加密代码，可自动删除无效节点（暂未验证）
